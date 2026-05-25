@@ -1,16 +1,20 @@
 {
-  "name": "jira-issue-panel-custom-ui",
-  "version": "1.2.29",
-  "main": "index.js",
-  "license": "MIT",
+  "name": "jira-issue-panel-custom-ui-static",
+  "version": "0.2.53",
   "private": true,
-  "devDependencies": {
-    "eslint": "^8.56.0",
-    "eslint-plugin-react-hooks": "^4.6.0"
-  },
   "dependencies": {
-    "@forge/api": "7.1.0",
-    "@forge/kvs": "^1.6.1",
-    "@forge/resolver": "1.7.1"
+    "@atlaskit/css-reset": "^6.6.2",
+    "@forge/bridge": "5.14.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "vite": "^8.0.11"
+  },
+  "scripts": {
+    "start": "vite",
+    "build": "vite build --outDir build",
+    "preview": "vite preview"
   }
 }
