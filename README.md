@@ -1,19 +1,64 @@
-QAQuest is a gamification plugin for manual testing workflows. Its
-main goal is to improve the quality of test artifacts by rewarding
-good testing practices, instead of rewarding only the amount of
-work produced. The plugin uses a weighted scoring model that eval-
-uates signals such as Gherkin structure, description completeness,
-requirement traceability, and execution evidence. It also includes
-ten badges with five progression levels, a quality bonus based on
-portfolio coverage, and immediate feedback after test updates, al-
-ways with personal metrics and no public ranking.
-QAQuest was designed so that its scoring logic, feedback flow,
-and progression model can be instantiated in different organiza-
-tional contexts and adapted to different test management platforms.
-The resulting tool offers six dashboard views that combine oper-
-ational indicators, quality dimensions, progression history, sprint
-context, and adoption metrics for managers.
-This work delivers a practical plugin ready for real team use
-and a foundation for evaluating whether quality focused incentives
-can sustain engagement over time without creating the distortions
-commonly seen in approaches centered only on volume.
+# QAQuest Forge Plugin
+
+QAQuest is an Atlassian Forge app for Jira/Xray that applies
+quality-focused gamification to software testing activities.
+
+## Technical Overview
+
+The plugin is implemented as a Forge app with:
+
+- Jira issue panel and project page modules for visualization
+- Trigger handlers for Jira issue creation/update events
+- Lifecycle handlers for app installation/uninstallation events
+- Real-time scoring logic based on Xray/Jira data
+- Badge progression, level calculation, and usage analytics
+
+Main technical components:
+
+- `src/index.js`: main resolver and integration entrypoint
+- `src/webhooks.js`: event processing for Jira issue changes
+- `src/lifecycle.js`: app lifecycle event handling
+- `src/reward-events.js`: gamification event/reward processing
+- `src/game-report.js`: progress and score reporting
+- `src/usage-analytics.js`: usage telemetry and activity signals
+- `src/gamification-storage.js`: app storage abstractions
+- `static/hello-world/`: frontend UI (dashboard, badges, quality panels)
+
+## Prerequisites
+
+To run or validate QAQuest in Jira Cloud, you need:
+
+1. Atlassian Cloud account with access to a Jira Cloud site
+2. Permission to install Forge apps in that site (site admin recommended)
+3. Node.js 20+ and npm
+4. Atlassian Forge CLI installed and authenticated
+
+Forge setup reference:
+
+- https://developer.atlassian.com/platform/forge/set-up-forge/
+
+## Local Development
+
+From the repository root:
+
+```bash
+cd QAQuest
+npm install
+cd static/hello-world
+npm install
+npm run build
+cd ../..
+forge deploy
+```
+
+Optional local tunnel for iterative frontend/backend debugging:
+
+```bash
+forge tunnel
+```
+
+## Artifact Availability
+
+Anonymous repository link for artifact availability:
+
+- https://anonymous.4open.science/r/qaquest-plugin-4BF3/README.md
