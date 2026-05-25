@@ -1,0 +1,53 @@
+modules:
+  jira:issuePanel:
+    - key: qaquest-hello-world-panel
+      resource: main
+      resolver:
+        function: resolver
+      viewportSize: medium
+      title: QAQuest
+      icon: resource:main;qaquest-logo.png
+  jira:projectPage:
+    - key: qaquest-project-page
+      title: QAQuest
+      icon: resource:main;qaquest-logo.png
+      resource: main
+      resolver:
+        function: resolver
+  trigger:
+    - key: test-created-webhook
+      function: webhookHandler
+      events:
+        - jira:issue_created
+    - key: test-updated-webhook
+      function: webhookHandler
+      events:
+        - jira:issue_updated
+    - key: app-installed-trigger
+      function: lifecycleHandler
+      events:
+        - app:installed
+    - key: app-uninstalled-trigger
+      function: lifecycleHandler
+      events:
+        - app:uninstalled
+  function:
+    - key: resolver
+      handler: index.handler
+    - key: webhookHandler
+      handler: webhooks.handler
+    - key: lifecycleHandler
+      handler: lifecycle.handler
+resources:
+  - key: main
+    path: static/hello-world/build
+permissions:
+  scopes:
+    - read:jira-work
+    - storage:app
+app:
+  runtime:
+    name: nodejs24.x
+    memoryMB: 256
+    architecture: arm64
+  id: ari:cloud:ecosystem::app/1b778d0b-6d5a-454f-aa56-15d6d0ea9f93
